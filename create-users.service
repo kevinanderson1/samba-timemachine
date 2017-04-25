@@ -1,0 +1,13 @@
+[Unit]
+Description=Create Users from environment variables
+Before=smbd.service
+
+[Service]
+Type=oneshot
+PassEnvironment=USER_ENV
+ExecStart=/bin/bash /etc/supervisor/createUsers.sh
+RemainAfterExit=false
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
