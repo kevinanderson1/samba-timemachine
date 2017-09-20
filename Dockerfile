@@ -1,6 +1,6 @@
-FROM fedora:25
+FROM fedora:26
 
-RUN dnf install -y avahi git gcc python python-devel gnutls-devel libacl-devel openldap-devel pam-devel \
+RUN dnf install -y avahi avahi-devel git gcc python python-devel gnutls-devel libacl-devel openldap-devel pam-devel \
     && dnf clean all \
     && git clone https://github.com/kevinanderson1/samba.git \
     && cd samba \
@@ -16,7 +16,6 @@ RUN dnf install -y avahi git gcc python python-devel gnutls-devel libacl-devel o
     && rm -rf /samba \
     && dnf remove -y git gcc gnutls-devel libacl-devel openldap-devel pam-devel
 
-ADD timemachine.service /etc/avahi/services/timemachine.service
 ADD createUsers.sh /etc/supervisor/createUsers.sh
 ADD smb.conf /etc/samba/smb.conf
 ADD smbd.service /etc/systemd/system/smbd.service

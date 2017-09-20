@@ -5,7 +5,7 @@ After=network.target remote-fs.target nss-lookup.target
 [Service]
 Type=simple
 ExecStartPre=-/bin/bash /etc/supervisor/createUsers.sh
-ExecStart=/usr/local/samba/sbin/smbd -F -d 1 -s /etc/samba/smb.conf
+ExecStart=/usr/local/samba/sbin/smbd --no-process-group -F -d 1 -s /etc/samba/smb.conf
 PIDFile=/usr/local/samba/var/run/samba.pid
 
 [Install]
