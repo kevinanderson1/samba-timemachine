@@ -1,11 +1,9 @@
-FROM fedora:26
+FROM fedora:27
 
 RUN dnf install -y avahi avahi-devel git gcc python python-devel gnutls-devel libacl-devel openldap-devel pam-devel \
     && dnf clean all \
-    && git clone https://github.com/kevinanderson1/samba.git \
+    && git clone https://github.com/samba-team/samba.git \
     && cd samba \
-    && git fetch origin \
-    && git checkout remotes/origin/bz12380-full_fsync \
     && ./configure \
     && echo "Using $(nproc) cpu's for compilation" \
     && make -j$(nproc) \
